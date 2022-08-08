@@ -1,0 +1,11 @@
+# > 0.5%, last 2 versions, Firefox ESR, not dead.
+#defaults
+
+> 1%
+last 2 versions
+not ie <= 11
+not dead
+Chrome >= 63
+Edge >= 79
+Safari >= 11.1
+Firefox >= 67
