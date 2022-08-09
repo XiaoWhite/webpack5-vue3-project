@@ -5,7 +5,7 @@ const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // 用于生成 html 文件
 
 const config = {
-  mode: 'production',
+  mode: 'development',
   entry: {
     main: './src/main.js'
   },
