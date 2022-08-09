@@ -27,12 +27,7 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
     new MiniCssExtractPlugin({
       filename: `css/[name]_[contenthash:8].css` // 指定 css 文件的名称
     })
-  ],
-  optimization: {
-    splitChunks: {
-      chunks: 'all'
-    }
-  }
+  ]
 });
 
 console.log('prodWebpackConfig --- ', prodWebpackConfig);
