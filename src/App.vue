@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div class="app">
     <router-view></router-view>
   </div>
 </template>
@@ -20,7 +20,7 @@ body {
 </style>
 
 <style lang="scss" scoped>
-.page {
+.app {
   width: 100vw;
   height: 100vh;
 	box-sizing: border-box;

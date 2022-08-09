@@ -7,7 +7,7 @@ onMounted(() => {
 </script>
 <template>
   <div class="page">
-    <h1 class="title">Page1</h1>
+    <div class="title">Page1</div>
 		<h2>This is a Vue3 project width webpack5</h2>
 		<div class="container"></div>
   </div>

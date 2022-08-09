@@ -5,18 +5,12 @@ const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // 用于生成 html 文件
 
 const config = {
-  mode: 'development',
   entry: {
-    main: './src/main.js'
+    main: resolve(__dirname, '../src/main.js')
   },
   output: {
-    path: resolve(__dirname, 'dist'), // 打包后的文件输出的目录
+    path: resolve(__dirname, '../dist'), // 打包后的文件输出的目录
     filename: `js/[name]_[chunkhash:8].js` // 设置打包后的 js 文件名，如果在文件名前增加文件路径，会将打包后的 js 文件放在指定的文件夹下
-  },
-	devServer: {
-    hot: true, // 开启热更新
-    open: false, // 编译之后自动打开网页
-    port: 9000 // 指定端口
   },
   module: {
     rules: [
@@ -35,16 +29,6 @@ const config = {
       {
         test: /\.vue$/,
         loader: 'vue-loader'
-      },
-      // 处理 css 文件
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader']
-      },
-      // 处理 scss 文件
-      {
-        test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
       },
       // 使用 webpack 内置的资源模块，对图片资源的处理
       {
@@ -82,7 +66,7 @@ const config = {
     new VueLoaderPlugin(),
     // 生成 html 文件
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'index.html'), // 以根目录下的 index.html 文件为模板，生成项目的入口文件
+      template: path.resolve(__dirname, '../index.html'), // 以根目录下的 index.html 文件为模板，生成项目的入口文件
       filename: 'index.html', // 生成的入口文件名
       chunks: ['main'],
       inject: true,
