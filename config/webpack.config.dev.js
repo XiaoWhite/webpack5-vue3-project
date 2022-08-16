@@ -10,6 +10,7 @@ const { merge } = require('webpack-merge'); // 用于合并配置
 const baseWebpackConfig = require('./webpack.config.base.js');
 const devWebpackConfig = merge(baseWebpackConfig, {
   mode: 'development',
+  devtool: 'source-map',
   devServer: {
     hot: true, // 开启热更新
     open: false, // 编译之后自动打开网页

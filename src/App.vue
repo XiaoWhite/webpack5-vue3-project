@@ -4,8 +4,7 @@
   </div>
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 
 <script>
 export default {};
@@ -23,6 +22,6 @@ body {
 .app {
   width: 100vw;
   height: 100vh;
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 </style>

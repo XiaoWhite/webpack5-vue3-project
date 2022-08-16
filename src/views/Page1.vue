@@ -4,12 +4,17 @@ import { onMounted } from 'vue';
 onMounted(() => {
   console.log('page1 - onMounted ---');
 });
+
+import Util from '../utils/Util.js';
+function clickTest1() {
+  console.log(Util.formatTime(new Date()));
+}
 </script>
 <template>
   <div class="page">
     <div class="title">Page1</div>
-		<h2>This is a Vue3 project width webpack5</h2>
-		<div class="container"></div>
+    <h2>This is a Vue3 project width webpack5</h2>
+    <div class="container" @click="clickTest1"></div>
   </div>
 </template>
 
