@@ -6,11 +6,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin'); // 用于生成 html �
 
 const config = {
   entry: {
-    main: resolve(__dirname, '../src/main.js')
+    main: resolve(__dirname, '../src/main.js'),
   },
   output: {
     path: resolve(__dirname, '../dist'), // 打包后的文件输出的目录
-    filename: `js/[name]_[chunkhash:8].js` // 设置打包后的 js 文件名，如果在文件名前增加文件路径，会将打包后的 js 文件放在指定的文件夹下
+    filename: `js/[name]_[chunkhash:8].js`, // 设置打包后的 js 文件名，如果在文件名前增加文件路径，会将打包后的 js 文件放在指定的文件夹下
   },
   module: {
     rules: [
@@ -22,13 +22,13 @@ const config = {
         exclude: [
           /node_modules/,
           // \\ for Windows, / for macOS and Linux
-          /node_modules[\\/]core-js/
-        ]
+          /node_modules[\\/]core-js/,
+        ],
       },
       // 处理 .vue 文件
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: 'vue-loader',
       },
       // 使用 webpack 内置的资源模块，对图片资源的处理
       {
@@ -37,13 +37,13 @@ const config = {
         generator: {
           // 设置图片被处理之后的名称，可以通过在名字前面加路径，将图片都放置在一个文件夹下
           // 注意这里的 [ext]，它已经包含了 . ，所以不能再在[has:8] 和 [ext] 之间加上点了
-          filename: 'img/[name]_[hash:8][ext][query]'
+          filename: 'img/[name]_[hash:8][ext][query]',
         },
         parser: {
           dataUrlCondition: {
-            maxSize: 4 * 1024 // 4kb，设置阈值，小于这个大小的，会被处理成 base 64 的字符串，默认是8kb
-          }
-        }
+            maxSize: 4 * 1024, // 4kb，设置阈值，小于这个大小的，会被处理成 base 64 的字符串，默认是8kb
+          },
+        },
       },
       // 参考上面图片的处理方式，可以设置其它资源的处理方式
       // 视频、音频等
@@ -51,15 +51,15 @@ const config = {
         test: /\.(mp3|mp4|mov)$/,
         type: 'asset',
         generator: {
-          filename: 'media/[name]_[hash:8][ext][query]'
+          filename: 'media/[name]_[hash:8][ext][query]',
         },
         parser: {
           dataUrlCondition: {
-            maxSize: 4 * 1024 // 4kb，设置阈值，小于这个大小的，会被处理成 base 64 的字符串，默认是8kb
-          }
-        }
-      }
-    ]
+            maxSize: 4 * 1024, // 4kb，设置阈值，小于这个大小的，会被处理成 base 64 的字符串，默认是8kb
+          },
+        },
+      },
+    ],
   },
   plugins: [
     // 请确保引入这个插件！
@@ -76,10 +76,40 @@ const config = {
         preserveLineBreaks: false,
         minifyCSS: true,
         minifyJS: true,
-        removeComments: false
-      }
-    })
-  ]
+        removeComments: false,
+      },
+    }),
+  ],
+  optimization: {
+    // chunkIds: 'named',
+    splitChunks: {
+      chunks: 'all',
+      minSize: 20000,
+      minChunks: 1,
+      maxAsyncRequests: 30,
+      maxInitialRequests: 30,
+      enforceSizeThreshold: 50000,
+      hidePathInfo: false,
+      cacheGroups: {
+        vue_lib: {
+          test: /[\\/]node_modules[\\/](vue|vue-router|vuex)/,
+          name: 'vue_lib',
+        },
+        defaultVendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+          reuseExistingChunk: true,
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+        },
+        // default: false, // 禁用默认缓存组
+        // defaultVendors: false, // 禁用默认缓存组
+      },
+    },
+  },
 };
 
 module.exports = config;
