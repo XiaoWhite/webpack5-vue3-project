@@ -5,7 +5,8 @@ import store from './store/index.js';
 
 // 完整引入 element-plus
 import ElementPlus from 'element-plus';
-import 'element-plus/dist/index.css';
+// import 'element-plus/dist/index.css';
+import './style/element/index.scss';
 import zhCn from 'element-plus/es/locale/lang/zh-cn';
 
 const app = createApp(App);

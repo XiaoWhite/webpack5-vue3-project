@@ -3,6 +3,7 @@ import { onMounted } from 'vue';
 
 onMounted(() => {
   console.log('page1 - onMounted ---');
+  console.log('change occur in page1');
 });
 
 import Util from '../utils/Util.js';

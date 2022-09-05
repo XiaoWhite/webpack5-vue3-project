@@ -1,13 +1,14 @@
 <template>
-  <div class="app">
+  <!-- <div class="app">
     <router-view></router-view>
+  </div> -->
+  <div class="app">
+    <Horizontal></Horizontal>
   </div>
 </template>
 
-<script setup></script>
-
-<script>
-export default {};
+<script setup>
+import Horizontal from './views/layout/horizontal/Horizontal.vue';
 </script>
 
 <style lang="scss">
