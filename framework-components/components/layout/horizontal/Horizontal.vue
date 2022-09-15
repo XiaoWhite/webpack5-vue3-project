@@ -27,6 +27,11 @@
   </div>
 </template>
 
+<script>
+  export default {
+    name: 'Horizontal'
+  }
+</script>
 <script setup>
 import SideBar from './SideBar.vue';
 import Navbar from './Navbar.vue';
@@ -38,7 +43,7 @@ const props = defineProps({
     default: 'include',
   },
   // include 模式下，需要被缓存的页面
-  includePage: {
+  includePages: {
     type: Array,
     default() {
       return [];
@@ -61,12 +66,12 @@ const props = defineProps({
   box-sizing: border-box;
   display: flex;
 
-  .side-bar {
-    width: 250px;
-    height: 100%;
-    flex-shrink: 0;
-    background-color: lightblue;
-  }
+  // .side-bar {
+  //   width: 250px;
+  //   height: 100%;
+  //   flex-shrink: 0;
+  //   background-color: lightblue;
+  // }
 
   .layout-content {
     flex: 1;

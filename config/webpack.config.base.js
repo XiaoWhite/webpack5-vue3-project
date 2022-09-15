@@ -1,5 +1,6 @@
 const path = require('path');
 const { resolve } = path;
+const webpack = require('webpack');
 
 const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // 用于生成 html 文件
@@ -62,6 +63,10 @@ const config = {
     ],
   },
   plugins: [
+    new webpack.DefinePlugin({
+      __VUE_OPTIONS_API__: true, // 参考文档 https://github.com/vuejs/core/tree/main/packages/vue#bundler-build-feature-flags
+      __VUE_PROD_DEVTOOLS__: false,
+    }),
     // 请确保引入这个插件！
     new VueLoaderPlugin(),
     // 生成 html 文件

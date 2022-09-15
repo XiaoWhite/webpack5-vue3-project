@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-import Horizontal from './views/layout/horizontal/Horizontal.vue';
+// import Horizontal from './views/layout/horizontal/Horizontal.vue';
 </script>
 
 <style lang="scss">

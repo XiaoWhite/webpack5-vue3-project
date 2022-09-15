@@ -9,9 +9,13 @@ import ElementPlus from 'element-plus';
 import './style/element/index.scss';
 import zhCn from 'element-plus/es/locale/lang/zh-cn';
 
+// 引入框架组件
+import frameworkComponents from '../framework-components/index';
+
 const app = createApp(App);
 
 app.use(router); // 挂载路由
 app.use(store); // 将 store 实例作为插件安装
 app.use(ElementPlus, { locale: zhCn }); // 注册组件
+app.use(frameworkComponents); // 注册框架组件
 app.mount('#app');
