@@ -8,7 +8,7 @@ onMounted(() => {
 	console.log('change occur in page1');
 });
 
-import Util from '../utils/Util.js';
+// import Util from '../utils/Util.js';
 function clickTest1() {
 	// console.log(Util.formatTime(new Date()));
 	$router.push('/page2');

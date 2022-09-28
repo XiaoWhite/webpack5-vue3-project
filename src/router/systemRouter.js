@@ -3,6 +3,7 @@ const Page2 = () => import('../views/Page2.vue');
 const Page3 = () => import('../views/Page3.vue');
 
 const VirtualList = () => import('../views/Examples/VirtualListDemo.vue');
+const PiniaDemo = () => import('../views/Examples/PiniaDemo.vue');
 
 export default function (Layout) {
 	return [
@@ -29,6 +30,11 @@ export default function (Layout) {
 					path: 'examples/virtualList',
 					name: 'virtualList',
 					component: VirtualList,
+				},
+				{
+					path: 'examples/pinia',
+					name: 'pinia',
+					component: PiniaDemo,
 				},
 			],
 		},

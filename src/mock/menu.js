@@ -23,6 +23,11 @@ export default [
 				title: '虚拟列表',
 				path: '/examples/virtualList',
 			},
+			{
+				id: '1-5',
+				title: 'PiniaDemo',
+				path: '/examples/pinia',
+			},
 		],
 	},
 ];
