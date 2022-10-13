@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia';
 
-export const useShoppingCartStore = defineStore('shoppingCart', {
+const useShoppingCartStore = defineStore('shoppingCart', {
 	state: () => ({
+		count: 0,
 		list: [],
 	}),
 	getters: {
@@ -10,6 +11,10 @@ export const useShoppingCartStore = defineStore('shoppingCart', {
 				return pre + curr.price;
 			}, 0);
 		},
+
+		doublePrice() {
+			return this.totalPrice * 2;
+		}
 	},
 	actions: {
 		addProduct(item) {
@@ -17,3 +22,5 @@ export const useShoppingCartStore = defineStore('shoppingCart', {
 		},
 	},
 });
+
+export default useShoppingCartStore;

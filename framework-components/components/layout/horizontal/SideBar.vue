@@ -5,7 +5,7 @@
 		<slot name="logo"></slot>
 
 		<!-- 菜单 -->
-		<el-menu :default-active="defaultActive" mode="vertical">
+		<el-menu class="menu" :default-active="defaultActive" mode="vertical">
 			<Menu :menu-list="menuList"></Menu>
 		</el-menu>
 
@@ -38,6 +38,11 @@ function loadMenu() {
 
 <style scoped lang="scss">
 .side-bar {
+	.menu {
+		// color: lightgoldenrodyellow;
+		--el-menu-bg-color: lightgoldenrodyellow;
+		--el-menu-active-color: red;
+	}
 	width: 250px;
 	height: 100%;
 	flex-shrink: 0;

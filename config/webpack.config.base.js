@@ -13,6 +13,9 @@ const config = {
     path: resolve(__dirname, '../dist'), // 打包后的文件输出的目录
     filename: `js/[name]_[chunkhash:8].js`, // 设置打包后的 js 文件名，如果在文件名前增加文件路径，会将打包后的 js 文件放在指定的文件夹下
   },
+  resolve: {
+    modules: ['node_modules']
+  },
   module: {
     rules: [
       // 它会应用到普通的 `.js` 文件
