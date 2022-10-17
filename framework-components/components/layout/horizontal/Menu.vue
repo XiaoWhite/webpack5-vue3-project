@@ -30,8 +30,8 @@ export default {
 // [@vue/compiler-sfc] `defineProps` is a compiler macro and no longer needs to be imported.
 // import { defineProps } from 'vue';
 
-import { useRouter } from 'vue-router';
-const $router = useRouter();
+// import { useRouter } from 'vue-router';
+// const $router = useRouter();
 
 const props = defineProps({
 	menuList: {
@@ -42,61 +42,14 @@ const props = defineProps({
 	},
 });
 
+const emit = defineEmits(['click-menu']);
+
 // 点击菜单
 function clickMenuItem(menu) {
 	console.log('click menu -- ', menu);
-	if (menu.path) {
-		$router.push(menu.path);
-	}
+	// 传递事件
+	emit('click-menu', menu);
 }
-
-// const defaultActive = ref('');
-// const menuList = ref([
-//   {
-//     id: '1',
-//     title: 'ElementPlus',
-//     path: '',
-//     children: [
-//       {
-//         id: '1-1',
-//         title: 'Button',
-//         path: '',
-//       },
-//       {
-//         id: '1-2',
-//         title: 'Border',
-//         path: '',
-//       },
-//       {
-//         id: '1-3',
-//         title: 'Color',
-//         path: '',
-//       },
-//     ],
-//   },
-//   {
-//     id: '2',
-//     title: 'Echarts',
-//     path: '',
-//     children: [
-//       {
-//         id: '2-1',
-//         title: 'Line',
-//         path: '',
-//       },
-//       {
-//         id: '2-2',
-//         title: 'Pie',
-//         path: '',
-//       },
-//       {
-//         id: '2-3',
-//         title: 'Bar',
-//         path: '',
-//       },
-//     ],
-//   },
-// ]);
 </script>
 
 <style scoped lang="scss"></style>
