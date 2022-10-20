@@ -27,6 +27,7 @@ console.log(p);
 
 <template>
 	<div class="page">
+		<div class="title">Page2</div>
 		<el-button type="primary" @click="sendRequest">Click</el-button>
 		<el-button plain @click="clickFormat">FormatDate</el-button>
 	</div>

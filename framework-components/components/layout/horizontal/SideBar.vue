@@ -19,6 +19,7 @@
 import { computed, onMounted, ref } from 'vue';
 import menuData from '/src/mock/menu.js';
 import useMenuStore from '../../../store/menu.js';
+import useTagStore from '../../../store/tag-group.js';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
 const $router = useRouter();
@@ -26,8 +27,11 @@ const $router = useRouter();
 // const defaultActive = ref('');
 // const menuList = ref([]);
 
-const store = useMenuStore();
-const { menuList, activedMenuId } = storeToRefs(store);
+const menuStore = useMenuStore();
+const { menuList, activedMenuId } = storeToRefs(menuStore);
+
+const tagStore = useTagStore();
+const { visitedList, selectedTag } = storeToRefs(tagStore);
 
 onMounted(() => {
 	// 加载菜单数据
@@ -37,13 +41,13 @@ onMounted(() => {
 // 加载菜单数据
 function loadMenu() {
 	menuList.value = menuData;
-	store.menuList = menuData;
 }
 
 // 选中菜单
 function clickMenu(menu) {
 	if (menu.path) {
-		activedMenuId.value = menu.id; // 更新 store 中的数据
+		activedMenuId.value = menu.id; // 更新 menu store 中的数据
+		tagStore.addTag(menu); // 添加标签
 		$router.push(menu.path); // 跳转页面
 	}
 }

@@ -16,6 +16,9 @@
 			<!-- 上方的导航栏 -->
 			<Navbar></Navbar>
 
+			<!-- 标签栏 -->
+			<TagGroup></TagGroup>
+
 			<!-- 页面内容 -->
 			<div class="page-container">
 				<router-view v-slot="{ Component }">
@@ -42,6 +45,7 @@ export default {
 <script setup>
 import SideBar from './SideBar.vue';
 import Navbar from './Navbar.vue';
+import TagGroup from '../../tag-group/TagGroup.vue'
 
 const props = defineProps({
 	// 缓存模式

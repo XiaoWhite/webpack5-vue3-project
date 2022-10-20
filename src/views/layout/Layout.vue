@@ -1,5 +1,5 @@
 <template>
-	<Horizontal>
+	<Horizontal keep-alive-mode="exclude">
 		<template #logo>
 			<div>this is logo</div>
 		</template>

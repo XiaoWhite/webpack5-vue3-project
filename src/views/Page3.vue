@@ -18,6 +18,7 @@
 </script>
 <template>
 	<div class="page">
+		<div class="title">Page3</div>
 		<h1>Vuex Demo</h1>
 		<!-- <el-button @click="changeUserInfo">修改 userInfo</el-button>
 		<p>userInfo.name = {{ userInfo.name }}</p>
