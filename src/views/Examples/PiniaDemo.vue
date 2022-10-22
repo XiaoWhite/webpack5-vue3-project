@@ -6,6 +6,7 @@
 		<div>doublePrice: {{ doublePrice }}</div>
 		<el-button @click="clickAdd">添加商品</el-button>
 		<el-button @click="resetState">重置 state</el-button>
+		<el-button plain @click="clickFlatMenu">FlatMenu</el-button>
 
 		<h3>商品列表</h3>
 		<div class="goods-list">
@@ -21,7 +22,9 @@
 import { computed, onMounted, ref, watch } from 'vue';
 import { storeToRefs, getActivePinia } from 'pinia';
 import useShoppingCartStore from '../../store/shoppingCart.js';
+import useMenuStore from '../../../framework-components/store/menu';
 const store = useShoppingCartStore();
+const menuStore = useMenuStore();
 console.log('PiniaDemo --- store = ', store);
 const { list, totalPrice, doublePrice } = storeToRefs(store);
 console.log('store.list = ', list);
@@ -45,7 +48,7 @@ store.$subscribe((mutation, state) => {
 });
 
 watch(
-	() => store.list.length, // store 是一个 reactive，所以监听时，这里需要写成一个 getter 函数 
+	() => store.list.length, // store 是一个 reactive，所以监听时，这里需要写成一个 getter 函数
 	(newVal, oldVal) => {
 		console.log(`watch --- newVal = ${newVal}, oldVal = ${oldVal}`);
 	},
@@ -104,6 +107,10 @@ onMounted(() => {
 	$pinia = getActivePinia();
 	console.log('pinia ----- ', $pinia);
 });
+
+function clickFlatMenu() {
+	console.log('flatMenu ---- ', menuStore.flatMenu);
+}
 </script>
 
 <style scoped lang="scss">

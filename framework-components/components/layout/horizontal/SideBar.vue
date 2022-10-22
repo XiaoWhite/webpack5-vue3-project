@@ -16,7 +16,7 @@
 
 <script setup>
 // import Menu from './Menu.vue';
-import { computed, onMounted, ref } from 'vue';
+import { computed, nextTick, onMounted, ref, watch } from 'vue';
 import menuData from '/src/mock/menu.js';
 import useMenuStore from '../../../store/menu.js';
 import useTagStore from '../../../store/tag-group.js';
@@ -24,14 +24,11 @@ import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
 const $router = useRouter();
 
-// const defaultActive = ref('');
-// const menuList = ref([]);
-
-const menuStore = useMenuStore();
+const menuStore = useMenuStore(); // 菜单数据
 const { menuList, activedMenuId } = storeToRefs(menuStore);
 
-const tagStore = useTagStore();
-const { visitedList, selectedTag } = storeToRefs(tagStore);
+const tagStore = useTagStore(); // 标签数据
+// const { visitedList, selectedTag } = storeToRefs(tagStore);
 
 onMounted(() => {
 	// 加载菜单数据
@@ -41,6 +38,15 @@ onMounted(() => {
 // 加载菜单数据
 function loadMenu() {
 	menuList.value = menuData;
+
+	nextTick(() => {
+		// 获取当前路由信息，并更新 menuStore 中的数据
+		let toMenu = menuStore.getMenuByPath($router.currentRoute.value.path);
+		if (toMenu) {
+			activedMenuId.value = toMenu.id;
+			tagStore.addTag(toMenu);
+		}
+	});
 }
 
 // 选中菜单
@@ -51,6 +57,21 @@ function clickMenu(menu) {
 		$router.push(menu.path); // 跳转页面
 	}
 }
+
+// 监听路由变化
+watch(
+	() => $router.currentRoute.value,
+	(to, from) => {
+		console.log('router to --- ', to);
+		console.log('router from --- ', from);
+
+		// 检查要进入的页面所对应的路径，是否在菜单中，如果在，修改当前活跃菜单 id
+		let toMenu = menuStore.getMenuByPath(to.path);
+		if (toMenu) {
+			activedMenuId.value = toMenu.id;
+		}
+	},
+);
 </script>
 
 <style scoped lang="scss">
