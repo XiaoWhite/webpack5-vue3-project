@@ -62,8 +62,8 @@ function clickMenu(menu) {
 watch(
 	() => $router.currentRoute.value,
 	(to, from) => {
-		console.log('router to --- ', to);
-		console.log('router from --- ', from);
+		// console.log('router to --- ', to);
+		// console.log('router from --- ', from);
 
 		// 检查要进入的页面所对应的路径，是否在菜单中，如果在，修改当前活跃菜单 id
 		let toMenu = menuStore.getMenuByPath(to.path);

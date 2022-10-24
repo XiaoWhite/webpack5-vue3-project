@@ -5,7 +5,7 @@
 				<div>this is logo</div>
 			</template>
 		</Horizontal> -->
-		<router-view></router-view>
+		<router-view></router-view> 
 	</div>
 </template>
 

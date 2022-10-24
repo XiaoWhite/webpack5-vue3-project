@@ -26,10 +26,12 @@ const tagStore = useTagStore();
 const { visitedList, selectedTag } = storeToRefs(tagStore);
 
 const $router = useRouter();
+const $emit = defineEmits(['closeTag']);
 
 // 关闭标签
 function closeTag(index) {
 	// console.log('closeTag --- ', index);
+	let closedTag = visitedList.value[index];
 	// 将标签从访问列表中移除
 	visitedList.value.splice(index, 1);
 
@@ -57,6 +59,7 @@ function closeTag(index) {
 				} else {
 					// 导航成功，更新 store 中当前选中的 tag
 					selectedTag.value = unref(targetTag);
+					$emit('closeTag', closedTag); // 通知父组件关闭的标签
 				}
 			});
 	}

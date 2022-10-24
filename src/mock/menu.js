@@ -6,7 +6,7 @@ export default [
 			{
 				id: '1-1',
 				title: 'Page1',
-				path: '/',
+				path: '/page1',
 			},
 			{
 				id: '1-2',

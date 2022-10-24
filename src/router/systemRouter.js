@@ -12,7 +12,7 @@ export default function (Layout) {
 			component: Layout,
 			children: [
 				{
-					path: '',
+					path: 'page1',
 					name: 'home',
 					component: Page1,
 				},

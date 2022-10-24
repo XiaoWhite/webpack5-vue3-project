@@ -17,7 +17,7 @@
 			<Navbar></Navbar>
 
 			<!-- 标签栏 -->
-			<TagGroup></TagGroup>
+			<TagGroup @close-tag="handleCloseTag"></TagGroup>
 
 			<!-- 页面内容 -->
 			<div class="page-container">
@@ -28,7 +28,7 @@
 					</KeepAlive>
 
 					<!-- exclude 模式 -->
-					<KeepAlive v-else :exclude="excludePages">
+					<KeepAlive v-else :exclude="localExclude">
 						<component :is="Component"></component>
 					</KeepAlive>
 				</router-view>
@@ -36,6 +36,11 @@
 		</div>
 	</div>
 </template>
+
+<!-- 
+https://cn.vuejs.org/guide/built-ins/keep-alive.html#include-exclude
+在 3.2.34 或以上的版本中，使用 <script setup> 的单文件组件会自动根据文件名生成对应的 name 选项，无需再手动声明。
+ -->
 
 <script>
 export default {
@@ -45,7 +50,8 @@ export default {
 <script setup>
 import SideBar from './SideBar.vue';
 import Navbar from './Navbar.vue';
-import TagGroup from '../../tag-group/TagGroup.vue'
+import TagGroup from '../../tag-group/TagGroup.vue';
+import { computed, ref } from 'vue-demi';
 
 const props = defineProps({
 	// 缓存模式
@@ -68,6 +74,23 @@ const props = defineProps({
 		},
 	},
 });
+
+const closedPages = ref([]);
+const localExclude = computed(() => {
+	return props.excludePages.concat(closedPages.value);
+});
+
+
+// 监听关闭标签事件
+function handleCloseTag(tag) {
+	console.log('handleCloseTag --- ', tag);
+	if (tag.path == '/page2') {
+		closedPages.value.push('Page2');
+		setTimeout(() => {
+			closedPages.value = []; // 重置数组，避免关闭的页面无法再次被缓存
+		}, 200);
+	}
+}
 </script>
 
 <style scoped lang="scss">
