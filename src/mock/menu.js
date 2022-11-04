@@ -30,6 +30,28 @@ export default [
 			},
 		],
 	},
+	{
+		id: '2',
+		title: 'Shopping',
+		children: [
+			{
+				id: '2-1',
+				title: 'List',
+				path: '/shopping/list',
+			},
+		],
+	},
+	{
+		id: '3',
+		title: 'ElementDemo',
+		children: [
+			{
+				id: '3-1',
+				title: 'ElDemo1',
+				path: '/eldemo/demo1',
+			},
+		],
+	},
 ];
 
 // 测试数据

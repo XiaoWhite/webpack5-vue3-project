@@ -14,6 +14,7 @@ const config = {
     filename: `js/[name]_[chunkhash:8].js`, // 设置打包后的 js 文件名，如果在文件名前增加文件路径，会将打包后的 js 文件放在指定的文件夹下
   },
   resolve: {
+    extensions: ['.js', '.json', '.jsx', '.vue'],
     modules: ['node_modules']
   },
   module: {
