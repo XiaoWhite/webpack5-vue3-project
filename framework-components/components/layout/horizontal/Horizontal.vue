@@ -24,7 +24,7 @@
 				<router-view v-slot="{ Component }">
 					<!-- include 模式 -->
 					<KeepAlive v-if="keepAliveMode == 'include'" :include="includePages">
-						<component :is="Component"></component>
+						<component :is="Component" :key="$route.fullPath"></component>
 					</KeepAlive>
 
 					<!-- exclude 模式 -->

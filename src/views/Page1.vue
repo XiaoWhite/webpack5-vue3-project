@@ -1,7 +1,15 @@
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useEventBus } from '../../framework-components/utils/event-bus.js';
 const $router = useRouter();
+
+const { onMessage } = useEventBus();
+const msgContent = ref('');
+onMessage('TestMsg', (data) => {
+	console.log('Page1 - onMessage ---- ', data);
+	msgContent.value = data.content;
+});
 
 onMounted(() => {
 	console.log('page1 - onMounted ---');
@@ -19,6 +27,7 @@ function clickTest1() {
 		<div class="title">Page1</div>
 		<h2>This is a Vue3 project width webpack5</h2>
 		<div class="container" @click="clickTest1"></div>
+		<h2>接收到的消息：{{msgContent}}</h2>
 	</div>
 </template>
 
