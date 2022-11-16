@@ -9,9 +9,7 @@
 			<template v-for="child in menu.children" :key="child.id">
 				<!-- 判断子菜单是否还有子菜单 -->
 				<Menu v-if="child.children && child.children.length > 0" :menu-list="[child]"></Menu>
-				<template v-else>
-					<el-menu-item :index="child.id" @click="clickMenuItem(child)">{{ child.title }}</el-menu-item>
-				</template>
+				<el-menu-item v-else :index="child.id" @click="clickMenuItem(child)">{{ child.title }}</el-menu-item>
 			</template>
 		</el-sub-menu>
 

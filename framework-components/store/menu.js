@@ -2,6 +2,7 @@
 import { defineStore } from 'pinia';
 const useMenuStore = defineStore('menuStore', {
 	state: () => ({
+		isExpand: true, // 是否展开左边侧边栏
 		menuList: [], // 菜单列表
 		activedMenuId: '', // 当前活跃菜单 id
 	}),

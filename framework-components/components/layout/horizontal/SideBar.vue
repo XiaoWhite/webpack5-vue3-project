@@ -5,7 +5,7 @@
 		<slot name="logo"></slot>
 
 		<!-- 菜单 -->
-		<el-menu class="menu" :default-active="activedMenuId" mode="vertical">
+		<el-menu class="menu" :collapse="!isExpand" :default-active="activedMenuId" mode="vertical">
 			<Menu :menu-list="menuList" @click-menu="clickMenu"></Menu>
 		</el-menu>
 
@@ -16,7 +16,7 @@
 
 <script setup>
 // import Menu from './Menu.vue';
-import { computed, nextTick, onMounted, ref, watch } from 'vue';
+import { nextTick, onMounted, watch } from 'vue';
 import menuData from '/src/mock/menu.js';
 import useMenuStore from '../../../store/menu.js';
 import useTagStore from '../../../store/tag-group.js';
@@ -25,7 +25,7 @@ import { useRouter } from 'vue-router';
 const $router = useRouter();
 
 const menuStore = useMenuStore(); // 菜单数据
-const { menuList, activedMenuId } = storeToRefs(menuStore);
+const { menuList, activedMenuId, isExpand } = storeToRefs(menuStore);
 
 const tagStore = useTagStore(); // 标签数据
 // const { visitedList, selectedTag } = storeToRefs(tagStore);

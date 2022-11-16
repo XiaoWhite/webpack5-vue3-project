@@ -27,7 +27,14 @@ function clickTest1() {
 		<div class="title">Page1</div>
 		<h2>This is a Vue3 project width webpack5</h2>
 		<div class="container" @click="clickTest1"></div>
-		<h2>接收到的消息：{{msgContent}}</h2>
+		<h2>接收到的消息：{{ msgContent }}</h2>
+
+		<div class="header">
+			<svg class="cutefont" aria-hidden="true">
+				<use xlink:href="#icon-duihuan"></use>
+			</svg>
+			<span>兑换</span>
+		</div>
 	</div>
 </template>
 
@@ -49,6 +56,19 @@ function clickTest1() {
 		align-items: center;
 		justify-content: center;
 		box-shadow: 0 0 6px 0 red;
+	}
+
+	.header {
+		width: 100%;
+		height: 28px;
+		font-size: 20px;
+		background-color: lightblue;
+
+		.cutefont {
+			width: 20px;
+			height: 20px;
+			font-size: 20px;
+		}
 	}
 }
 </style>
