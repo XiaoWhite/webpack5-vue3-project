@@ -29,12 +29,12 @@ function clickTest1() {
 		<div class="container" @click="clickTest1"></div>
 		<h2>接收到的消息：{{ msgContent }}</h2>
 
-		<div class="header">
-			<svg class="cutefont" aria-hidden="true">
+		<!-- <div class="header">
+			<svg class="cutefont-svg" aria-hidden="true">
 				<use xlink:href="#icon-duihuan"></use>
 			</svg>
 			<span>兑换</span>
-		</div>
+		</div> -->
 	</div>
 </template>
 

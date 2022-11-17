@@ -1,8 +1,9 @@
 // 框架组件入口
 
 // 引入图标字体
-import './assets/iconfont/cute/cutefont.js';
-import './assets/iconfont/cute/svg-font.css';
+// import './assets/iconfont/cute/cutefont.js';
+// import './assets/iconfont/cute/svg-font.css';
+// import './assets/iconfont/cute/cutefont.css';
 
 // 框架组件
 import Horiontal from './components/layout/horizontal/Horizontal.vue';

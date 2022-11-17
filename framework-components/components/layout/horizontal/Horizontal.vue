@@ -24,7 +24,7 @@
 				<router-view v-slot="{ Component }">
 					<!-- include 模式 -->
 					<KeepAlive v-if="keepAliveMode == 'include'" :include="includePages">
-						<component :is="Component" :key="$route.fullPath"></component>
+						<component :is="Component"></component>
 					</KeepAlive>
 
 					<!-- exclude 模式 -->
@@ -52,6 +52,7 @@ import SideBar from './SideBar.vue';
 import Navbar from './Navbar.vue';
 import TagGroup from '../../tag-group/TagGroup.vue';
 import { computed, ref } from 'vue-demi';
+// import { useRoute } from 'vue-router';
 
 const props = defineProps({
 	// 缓存模式
@@ -75,11 +76,18 @@ const props = defineProps({
 	},
 });
 
+// 组件 key
+// const route = useRoute();
+// // console.log('Horizontal -- route ---- ', route);
+// const componentKey = computed(() => {
+// 	console.log('route.fullPath -- ', route.fullPath);
+// 	return route.fullPath;
+// });
+
 const closedPages = ref([]);
 const localExclude = computed(() => {
 	return props.excludePages.concat(closedPages.value);
 });
-
 
 // 监听关闭标签事件
 function handleCloseTag(tag) {

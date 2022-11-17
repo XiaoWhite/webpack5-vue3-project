@@ -2,6 +2,7 @@ export default [
 	{
 		id: '1',
 		title: 'Demos',
+		icon: 'faxian',
 		children: [
 			{
 				id: '1-1',
@@ -33,6 +34,7 @@ export default [
 	{
 		id: '2',
 		title: 'Shopping',
+		icon: 'huodong',
 		children: [
 			{
 				id: '2-1',
@@ -44,6 +46,7 @@ export default [
 	{
 		id: '3',
 		title: 'ElementDemo',
+		icon: 'yingyong',
 		children: [
 			{
 				id: '3-1',

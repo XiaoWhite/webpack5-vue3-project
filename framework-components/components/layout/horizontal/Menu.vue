@@ -3,7 +3,10 @@
 		<!-- 如果有子菜单，使用 el-sub-menu -->
 		<el-sub-menu v-if="menu.children && menu.children.length > 0" :index="menu.id">
 			<template #title>
-				<div class="title">{{ menu.title }}</div>
+				<!-- 图标 -->
+				<img v-if="menu.icon" class="menu-icon" :src="require(`../../../assets/images/menu-icons/${menu.icon}.png`)" />
+				<!-- 标题 -->
+				<span class="title">{{ menu.title }}</span>
 			</template>
 
 			<template v-for="child in menu.children" :key="child.id">
@@ -50,4 +53,10 @@ function clickMenuItem(menu) {
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.menu-icon {
+	width: 20px;
+	height: 20px;
+	margin-right: 4px;
+}
+</style>
