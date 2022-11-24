@@ -3,6 +3,8 @@
 // import { useStore } from 'vuex';
 // const store = useStore();
 
+import { onMounted, onUnmounted } from 'vue-demi';
+
 // const userInfo = computed(() => {
 // 	return store.state.userInfo;
 // });
@@ -15,6 +17,25 @@
 // }
 
 // function clickTransform() {}
+
+// 接收 window.postMessage 的消息
+function handleReceivedMessage(event) {
+	// console.log('handleReceivedMessage --- event = ', event);
+	let data = event.data;
+	let eventCode = data.eventCode;
+	if (eventCode == 'showImage') {
+		let body = data.body;
+		// 获取图片地址
+		let imgUrl = body.imgUrl;
+		console.log('receive imgUrl = ', imgUrl);
+	}
+}
+onMounted(() => {
+	window.addEventListener('message', handleReceivedMessage);
+});
+onUnmounted(() => {
+	window.removeEventListener('message', handleReceivedMessage);
+});
 </script>
 <template>
 	<div class="page">
