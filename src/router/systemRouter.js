@@ -4,6 +4,7 @@ const Page3 = () => import('../views/Page3.vue');
 
 const VirtualList = () => import('../views/Examples/VirtualListDemo.vue');
 const PiniaDemo = () => import('../views/Examples/PiniaDemo.vue');
+const ProvideInjectDemo = () => import('../views/Examples/provide-inject-demo/ProvideInjectDemo.vue');
 
 export default function (Layout) {
 	return [
@@ -35,6 +36,11 @@ export default function (Layout) {
 					path: 'examples/pinia',
 					name: 'pinia',
 					component: PiniaDemo,
+				},
+				{
+					path: 'examples/provide',
+					name: 'provideInjectDemo',
+					component: ProvideInjectDemo,
 				},
 			],
 		},

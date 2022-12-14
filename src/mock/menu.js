@@ -29,6 +29,11 @@ export default [
 				title: 'PiniaDemo',
 				path: '/examples/pinia',
 			},
+			{
+				id: '1-6',
+				title: 'ProvideInjectDemo',
+				path: '/examples/provide',
+			},
 		],
 	},
 	{
