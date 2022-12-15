@@ -17,11 +17,11 @@
 <script setup>
 // import Menu from './Menu.vue';
 import { nextTick, onMounted, watch } from 'vue';
-import menuData from '/src/mock/menu.js';
 import useMenuStore from '../../../store/menu.js';
 import useTagStore from '../../../store/tag-group.js';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
+import { getMenuData } from '../../../service/api_menu.js';
 const $router = useRouter();
 
 const menuStore = useMenuStore(); // 菜单数据
@@ -37,15 +37,19 @@ onMounted(() => {
 
 // 加载菜单数据
 function loadMenu() {
-	menuList.value = menuData;
+	// 请求数据
+	getMenuData().then((res) => {
+		// console.log('menu ----- res = ', res);
+		menuList.value = res;
 
-	nextTick(() => {
-		// 获取当前路由信息，并更新 menuStore 中的数据
-		let toMenu = menuStore.getMenuByPath($router.currentRoute.value.path);
-		if (toMenu) {
-			activedMenuId.value = toMenu.id;
-			tagStore.addTag(toMenu);
-		}
+		nextTick(() => {
+			// 获取当前路由信息，并更新 menuStore 中的数据
+			let toMenu = menuStore.getMenuByPath($router.currentRoute.value.path);
+			if (toMenu) {
+				activedMenuId.value = toMenu.id;
+				tagStore.addTag(toMenu);
+			}
+		});
 	});
 }
 

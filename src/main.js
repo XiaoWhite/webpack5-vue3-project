@@ -16,6 +16,9 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 // 引入框架组件
 import frameworkComponents from '../framework-components/index';
 
+// 引入 mock 数据
+import './mock/test1.js';
+
 const app = createApp(App);
 const pinia = createPinia();
 
