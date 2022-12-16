@@ -38,6 +38,7 @@
     "mockjs": "^1.1.0",
     "pinia": "^2.0.22",
     "postcss-loader": "^7.0.1",
+    "postcss-pxtorem": "^6.0.0",
     "prettier": "^2.7.1",
     "sass": "^1.54.3",
     "sass-loader": "^13.0.2",
