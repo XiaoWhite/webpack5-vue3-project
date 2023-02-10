@@ -58,6 +58,11 @@ export default [
 				title: 'ElDemo1',
 				path: '/eldemo/demo1',
 			},
+			{
+				id: '3-2',
+				title: 'ElDemo2',
+				path: '/eldemo/demo2',
+			},
 		],
 	},
 ];
