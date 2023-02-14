@@ -2,14 +2,14 @@
 	<div class="page">
 		<div class="list">
 			<div class="list-item" v-for="(item) in list" :key="item.id">
-				<!-- <button>Click</button> -->
+				<button @click="clickMenu">Click</button>
 				<el-popover popper-class="result-box-img-pop-menu" placement="right" trigger="hover">
 					<template #reference>
 						<div class="img"></div>
 					</template>
 					<div class="menu-list">
-						<div class="menu-item">跳转Demo1</div>
-						<div class="menu-item">跳转Demo3</div>
+						<div class="menu-item" @click="clickMenu">跳转Demo1</div>
+						<div class="menu-item">跳转Demo2xxx</div>
 					</div>
 				</el-popover>
 			</div>
@@ -19,6 +19,8 @@
 
 <script setup>
 import { onMounted, ref } from "vue-demi";
+import { useRouter } from "vue-router";
+const router = useRouter();
 
 const list = ref([]);
 onMounted(() => {
@@ -35,6 +37,13 @@ onMounted(() => {
 function generateId() {
 	return String(Math.random()).substring(0, 10);
 }
+
+function clickMenu() {
+	setTimeout(() => {
+		router.push('/eldemo/demo1');
+	}, 500);
+	// console.log('hello --- 123');
+}
 </script>
 
 <style scoped lang="scss">
@@ -50,7 +59,8 @@ function generateId() {
 		height: 100%;
 		box-sizing: border-box;
 		border: 1px solid #eee;
-		background-color: lightgoldenrodyellow;
+		// background-color: lightgoldenrodyellow;
+		background-color: greenyellow;
 		padding: 6px;
 
 		.img {

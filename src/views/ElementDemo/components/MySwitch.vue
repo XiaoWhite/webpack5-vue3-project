@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, onDeactivated, ref } from 'vue';
 const props = defineProps({
 	// status: {
 	// 	type: Boolean,
@@ -34,6 +34,10 @@ function clickSwitch() {
 	// emit('update:status', !props.status);
 	emit('update:modelValue', !props.modelValue);
 }
+
+onDeactivated(() => {
+	console.log('MySwtich -- onDeactivated ----');
+});
 </script>
 
 <style scoped lang="scss">

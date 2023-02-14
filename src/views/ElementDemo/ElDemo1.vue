@@ -46,7 +46,7 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue-demi';
+import { reactive, ref, onDeactivated } from 'vue-demi';
 import MySwitch from './components/MySwitch.vue';
 const status = ref(false);
 // let status = false;
@@ -83,6 +83,12 @@ function clickConfirm() {
 function clickCancel() {
 	conditionForm.value.resetFields();
 }
+
+
+onDeactivated(() => {
+	// 验证：页面切换时，页面内的组件与页面的 deactivated 回调函数的调用顺序
+	console.log('ELDemo1 -- onDeactivated ----');
+});
 </script>
 
 <style scoped lang="scss">
