@@ -1,22 +1,23 @@
 <template>
-  <!-- 虚拟列表 Demo -->
-  <div class="page">
-    <div>虚拟列表 Demo</div>
+	<!-- 虚拟列表 Demo -->
+	<div class="page">
+		<div>虚拟列表 Demo</div>
 
-    <el-button type="primary" @click="loadData">Load Data</el-button>
+		<el-button type="primary" @click="loadData">Load Data</el-button>
 
-    <div class="list-container" @scroll="handleScroll" ref="scrollDom">
-      <!-- scroll bar -->
-      <div class="scroll-bar" :style="{ height: `${allDeviceCounts * itemHeight}px` }"></div>
-      <!-- 列表 -->
-      <div class="list-content" ref="content">
-        <!-- 列表元素 -->
-        <div class="list-item" v-for="item in visibleData" :key="item.id">
-          <p>{{ item.deviceName }}</p>
-        </div>
-      </div>
-    </div>
-  </div>
+		<div class="list-container" @scroll="handleScroll" ref="listContainer">
+			<!-- scroll bar（用来撑起容器，显示滚动条） -->
+			<div class="scroll-bar" :style="{ height: `${allDeviceCounts * itemHeight}px` }"></div>
+			<!-- 列表 -->
+			<div v-if="false" class="list-content" ref="listContent">
+				<!-- 列表元素 -->
+				<div class="list-item" v-for="(item, index) in visibleData" :key="item.id" @click="clickListItem(index)">
+					<!-- <p>{{ item.name }}</p> -->
+					<span>{{ item.name }}</span>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script setup>
@@ -32,83 +33,91 @@ let visibleCount = 0; // 可见区域渲染的节点数量
 let start = 0; // 从 list 中截取出可见区域数据的起点
 let end = 0; // 从 list 中截取出可见区域数据的终点
 
+// 列表数据总量
 const allDeviceCounts = computed(() => {
-  return list.value.length || 0;
+	return list.value.length || 0;
 });
 
-const scrollDom = ref(null); // list-container 的 ref
-const content = ref(null); // list-content 的 ref
+const listContainer = ref(null); // list-container 的 ref
+const listContent = ref(null); // list-content 的 ref
 
 onMounted(() => {
-  console.log('content ---- ', content);
+	console.log('listContent ---- ', listContent);
 });
 
+// 加载数据
 function loadData() {
-  // let temp = deviceList.slice(0, 20);
-  let tempList = [];
-  deviceList.forEach((item) => {
-    let dataSource = item.dataSource ? JSON.parse(item.dataSource) : item;
-    tempList.push(dataSource);
-  });
+	list.value = JSON.parse(JSON.stringify(deviceList));
 
-  list.value = tempList;
-
-  handleScroll();
+	handleScroll();
 }
 
+// 处理滚动事件
 function handleScroll() {
-  const scrollTop = scrollDom.value.scrollTop;
-  updateVisibleData(scrollTop);
+	const scrollTop = listContainer.value.scrollTop;
+	updateVisibleData(scrollTop);
 }
 
+// 更新可见区域的数据
 function updateVisibleData(scrollTop = 0) {
-  const clientHeight = scrollDom.value.clientHeight;
-  visibleCount = Math.ceil(clientHeight / itemHeight.value);
-  start = Math.floor(scrollTop / itemHeight.value);
-  end = start + visibleCount;
-  visibleData.value = list.value.slice(start, end);
+	const clientHeight = listContainer.value.clientHeight; // 获取容器高度
+	visibleCount = Math.ceil(clientHeight / itemHeight.value); // 计算显示行数
+	start = Math.floor(scrollTop / itemHeight.value); // 计算开始位置
+	end = start + visibleCount;
 
-  //把可见区域的 top 设置为起始元素在整个列表中的位置（使用 transform 是为了更好的性能）
-  content.value.style.webkitTransform = `translate3d(0, ${start * itemHeight.value}px, 0)`;
+  // 上下都多显示一行，尽量减少上下出现空白的情况
+  if (start >= 1) {
+    start -= 1;
+  }
+  if (end < list.value.length) {
+    end += 1;
+  }
+	visibleData.value = list.value.slice(start, end); // 截取显示区域的数据
+
+	//把可见区域的 top 设置为 起始元素在整个列表中的位置（使用 transform 是为了更好的性能）
+	listContent.value.style.webkitTransform = `translate3d(0, ${start * itemHeight.value}px, 0)`;
 }
 
-//监听scroll事件，计算可视区域
-// handleScroll() {
-// const scrollTop = this.$refs.scrollDom.scrollTop;
-// this.updateVisibleData(scrollTop);
-// },
-// updateVisibleData(scrollTop = 0) {
-// 	const clientHeight = this.$refs.scrollDom.clientHeight;
-// 	this.visibleCount = Math.ceil(clientHeight / this.itemHeight);
-// 	this.start = Math.floor(scrollTop / this.itemHeight);
-// 	this.end = this.start + this.visibleCount;
-// 	this.visibleData = this.lists.slice(this.start, this.end);
+/**
+ * 点击列表元素
+ * @param {number} index 点击元素在可见数据列表中的 index（并非在完整数据列表中的 index）
+ */
+function clickListItem(index) {
+  let finalIndex = start + index;
+  console.log('clickListItem --- index = ', finalIndex);
+}
 
-// 	//把可见区域的 top 设置为起始元素在整个列表中的位置（使用 transform 是为了更好的性能）
-// 	this.$refs.content.style.webkitTransform = `translate3d(0, ${this.start * this.itemHeight / 20}rem, 0)`;
-// },
 </script>
 
 <style scoped lang="scss">
 .page {
-  .list-container {
-    position: relative;
-    width: 500px;
-    height: 500px;
-    box-sizing: border-box;
+	.list-container {
+		position: relative;
+		width: 500px;
+		height: 500px;
+		box-sizing: border-box;
 
-    background-color: lightcyan;
-    margin: 30px;
+		background-color: lightcyan;
+		margin: 30px;
 
-    overflow-y: auto;
+		overflow-y: auto;
 
-    .scroll-bar {
-      position: absolute;
-      z-index: 1;
-      top: 0;
-      right: 0;
-      width: 8px;
-    }
-  }
+		.scroll-bar {
+			position: absolute;
+			z-index: 1;
+			top: 0;
+			right: 0;
+			width: 8px;
+		}
+
+		.list-content {
+			width: 100%;
+			.list-item {
+				width: 100%;
+				height: 40px;
+        line-height: 40px;
+			}
+		}
+	}
 }
 </style>
