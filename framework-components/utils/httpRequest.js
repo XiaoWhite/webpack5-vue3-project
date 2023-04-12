@@ -4,20 +4,20 @@ const instance = axios.create();
 
 // 添加响应拦截器，数据处理
 instance.interceptors.response.use(
-	(res) => {
-		// 正常返回
-		if (res.status === 200) {
-			// 获取数据
-			return res.data;
-		} else {
-			// 其他状态码的处理
-			return Promise.reject();
-		}
-	},
-	(error) => {
-		// 请求出错
-		return Promise.reject(error);
-	},
+  (res) => {
+    // 正常返回
+    if (res.status === 200) {
+      // 获取数据
+      return res.data;
+    } else {
+      // 其他状态码的处理
+      return Promise.reject();
+    }
+  },
+  (error) => {
+    // 请求出错
+    return Promise.reject(error);
+  },
 );
 
 export default instance;

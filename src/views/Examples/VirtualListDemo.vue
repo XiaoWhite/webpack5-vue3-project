@@ -9,7 +9,7 @@
       <!-- scroll bar（用来撑起容器，显示滚动条） -->
       <div class="scroll-bar" :style="{ height: `${allDeviceCounts * itemHeight}px` }"></div>
       <!-- 列表 -->
-      <div v-if="false" class="list-content" ref="listContent">
+      <div class="list-content" ref="listContent">
         <!-- 列表元素 -->
         <div class="list-item" v-for="(item, index) in visibleData" :key="item.id" @click="clickListItem(index)">
           <!-- <p>{{ item.name }}</p> -->

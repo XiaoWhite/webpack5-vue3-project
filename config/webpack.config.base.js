@@ -4,6 +4,7 @@ const webpack = require('webpack');
 
 const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // 用于生成 html 文件
+const ESLintPlugin = require('eslint-webpack-plugin'); // ESLint 插件
 
 const config = {
   entry: {
@@ -15,7 +16,7 @@ const config = {
   },
   resolve: {
     extensions: ['.js', '.json', '.jsx', '.vue'],
-    modules: ['node_modules']
+    modules: ['node_modules'],
   },
   module: {
     rules: [
@@ -87,6 +88,11 @@ const config = {
         minifyJS: true,
         removeComments: false,
       },
+    }),
+    // ESLint 检查
+    new ESLintPlugin({
+      extensions: ['js', 'jsx', 'vue'],
+      exclude: ['node_modules', 'dist'],
     }),
   ],
   optimization: {

@@ -1,18 +1,18 @@
 <template>
-	<div class="nav-bar">
-		<div class="nav-bar-left">
-			<!-- 左侧边栏开关 -->
-			<el-icon @click="clickExpand">
-				<Fold v-if="isExpand" />
-				<Expand v-else />
-			</el-icon>
-		</div>
-		<!-- 中间内容 -->
-		<div class="nav-bar-content"></div>
+  <div class="nav-bar">
+    <div class="nav-bar-left">
+      <!-- 左侧边栏开关 -->
+      <el-icon @click="clickExpand">
+        <Fold v-if="isExpand" />
+        <Expand v-else />
+      </el-icon>
+    </div>
+    <!-- 中间内容 -->
+    <div class="nav-bar-content"></div>
 
-		<!-- 右侧内容 -->
-		<div class="nav-bar-right"></div>
-	</div>
+    <!-- 右侧内容 -->
+    <div class="nav-bar-right"></div>
+  </div>
 </template>
 
 <script setup>
@@ -29,39 +29,39 @@ function clickExpand() {
 
 <style scoped lang="scss">
 .nav-bar {
-	width: 100%;
-	height: 64px;
-	box-sizing: border-box;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	background-color: lightcyan;
+  width: 100%;
+  height: 64px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: lightcyan;
 
-	.nav-bar-left {
-		min-width: 100px;
-		height: 100%;
-		display: flex;
-		align-items: center;
+  .nav-bar-left {
+    min-width: 100px;
+    height: 100%;
+    display: flex;
+    align-items: center;
     box-sizing: border-box;
     padding: 0 8px;
 
     .el-icon {
       cursor: pointer;
     }
-	}
+  }
 
-	.nav-bar-content {
-		flex: 1;
+  .nav-bar-content {
+    flex: 1;
     height: 100%;
-		display: flex;
-		align-items: center;
-	}
+    display: flex;
+    align-items: center;
+  }
 
-	.nav-bar-right {
-		min-width: 100px;
+  .nav-bar-right {
+    min-width: 100px;
     height: 100%;
     box-sizing: border-box;
     padding: 0 8px;
-	}
+  }
 }
 </style>
