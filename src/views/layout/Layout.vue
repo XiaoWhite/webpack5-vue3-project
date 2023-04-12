@@ -1,11 +1,11 @@
 <template>
-	<!-- <Horizontal keep-alive-mode="exclude" :exclude-pages="excludePages"> -->
-	<Horizontal keep-alive-mode="exclude">
-	<!-- <Horizontal keep-alive-mode="include"> -->
-		<template #logo>
-			<div>this is logo</div>
-		</template>
-	</Horizontal>
+  <!-- <Horizontal keep-alive-mode="exclude" :exclude-pages="excludePages"> -->
+  <Horizontal keep-alive-mode="exclude">
+    <!-- <Horizontal keep-alive-mode="include"> -->
+    <template #logo>
+      <div>this is logo</div>
+    </template>
+  </Horizontal>
 </template>
 
 <script setup>

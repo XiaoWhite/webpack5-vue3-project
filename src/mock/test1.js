@@ -3,5 +3,5 @@
 import Mock from 'mockjs';
 import menuData from './menu.js';
 Mock.mock('/api/menu', 'post', function (options) {
-	return menuData;
+  return menuData;
 });

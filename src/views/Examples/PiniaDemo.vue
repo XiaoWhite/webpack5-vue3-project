@@ -1,21 +1,21 @@
 <template>
-	<div class="page">
-		<h1>Pinia</h1>
-		<div>count: {{ store.count }}</div>
-		<div>totalPrice: {{ totalPrice }}</div>
-		<div>doublePrice: {{ doublePrice }}</div>
-		<el-button @click="clickAdd">添加商品</el-button>
-		<el-button @click="resetState">重置 state</el-button>
-		<el-button plain @click="clickFlatMenu">FlatMenu</el-button>
+  <div class="page">
+    <h1>Pinia</h1>
+    <div>count: {{ store.count }}</div>
+    <div>totalPrice: {{ totalPrice }}</div>
+    <div>doublePrice: {{ doublePrice }}</div>
+    <el-button @click="clickAdd">添加商品</el-button>
+    <el-button @click="resetState">重置 state</el-button>
+    <el-button plain @click="clickFlatMenu">FlatMenu</el-button>
 
-		<h3>商品列表</h3>
-		<div class="goods-list">
-			<div class="goods-item" v-for="(item, index) in list" :key="index">
-				<span>{{ item.name }}</span>
-				<span>￥{{ item.price }}</span>
-			</div>
-		</div>
-	</div>
+    <h3>商品列表</h3>
+    <div class="goods-list">
+      <div class="goods-item" v-for="(item, index) in list" :key="index">
+        <span>{{ item.name }}</span>
+        <span>￥{{ item.price }}</span>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup>
@@ -43,89 +43,89 @@ console.log('store.totalPrice = ', totalPrice);
 
 // 订阅 store 变化
 store.$subscribe((mutation, state) => {
-	console.log('subscribe --- mutation = ', mutation);
-	console.log('subscribe --- state = ', state);
+  console.log('subscribe --- mutation = ', mutation);
+  console.log('subscribe --- state = ', state);
 });
 
 watch(
-	() => store.list.length, // store 是一个 reactive，所以监听时，这里需要写成一个 getter 函数
-	(newVal, oldVal) => {
-		console.log(`watch --- newVal = ${newVal}, oldVal = ${oldVal}`);
-	},
+  () => store.list.length, // store 是一个 reactive，所以监听时，这里需要写成一个 getter 函数
+  (newVal, oldVal) => {
+    console.log(`watch --- newVal = ${newVal}, oldVal = ${oldVal}`);
+  },
 );
 
 // 添加商品
 function clickAdd() {
-	// store.count++;
-	// store.addProduct({
-	// 	name: 'MacBookPro',
-	// 	price: 10000,
-	// });
-	store.list.push({
-		name: 'MacBookPro',
-		price: 10000,
-	});
+  // store.count++;
+  // store.addProduct({
+  // 	name: 'MacBookPro',
+  // 	price: 10000,
+  // });
+  store.list.push({
+    name: 'MacBookPro',
+    price: 10000,
+  });
 
-	// 使用 $patch 方法
-	// store.$patch({
-	// 	count: 10,
-	// 	list: [
-	// 		{
-	// 			name: 'MacBookPro1',
-	// 			price: 10000,
-	// 		},
-	// 		{
-	// 			name: 'MacBookPro2',
-	// 			price: 10000,
-	// 		},
-	// 	],
-	// });
+  // 使用 $patch 方法
+  // store.$patch({
+  // 	count: 10,
+  // 	list: [
+  // 		{
+  // 			name: 'MacBookPro1',
+  // 			price: 10000,
+  // 		},
+  // 		{
+  // 			name: 'MacBookPro2',
+  // 			price: 10000,
+  // 		},
+  // 	],
+  // });
 
-	// store.$patch((state) => {
-	// 	state.count++;
-	// 	let num = state.list.length;
-	// 	state.list.push({
-	// 		name: 'MacBookPro_' + num,
-	// 		price: 10000,
-	// 	});
-	// });
+  // store.$patch((state) => {
+  // 	state.count++;
+  // 	let num = state.list.length;
+  // 	state.list.push({
+  // 		name: 'MacBookPro_' + num,
+  // 		price: 10000,
+  // 	});
+  // });
 }
 
 // 重置 state
 function resetState() {
-	// $pinia.state.value = {
-	// 	shoppingCart: {
-	// 		count: 100,
-	// 	},
-	// };
+  // $pinia.state.value = {
+  // 	shoppingCart: {
+  // 		count: 100,
+  // 	},
+  // };
 
-	store.$reset();
+  store.$reset();
 }
 
 let $pinia = undefined;
 onMounted(() => {
-	$pinia = getActivePinia();
-	console.log('pinia ----- ', $pinia);
+  $pinia = getActivePinia();
+  console.log('pinia ----- ', $pinia);
 });
 
 function clickFlatMenu() {
-	console.log('flatMenu ---- ', menuStore.flatMenu);
+  console.log('flatMenu ---- ', menuStore.flatMenu);
 }
 </script>
 
 <style scoped lang="scss">
 .goods-list {
-	margin-top: 10px;
-	width: 400px;
+  margin-top: 10px;
+  width: 400px;
 
-	.goods-item {
-		width: 100%;
-		height: 50px;
-		box-sizing: border-box;
-		padding: 4px;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
+  .goods-item {
+    width: 100%;
+    height: 50px;
+    box-sizing: border-box;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 </style>

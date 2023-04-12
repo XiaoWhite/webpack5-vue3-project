@@ -1,70 +1,70 @@
 export default [
-	{
-		id: '1',
-		title: 'Demos',
-		icon: 'faxian',
-		children: [
-			{
-				id: '1-1',
-				title: 'Page1',
-				path: '/page1',
-			},
-			{
-				id: '1-2',
-				title: 'Page2',
-				path: '/page2',
-			},
-			{
-				id: '1-3',
-				title: 'Page3',
-				path: '/page3',
-			},
-			{
-				id: '1-4',
-				title: '虚拟列表',
-				path: '/examples/virtualList',
-			},
-			{
-				id: '1-5',
-				title: 'PiniaDemo',
-				path: '/examples/pinia',
-			},
-			{
-				id: '1-6',
-				title: 'ProvideInjectDemo',
-				path: '/examples/provide',
-			},
-		],
-	},
-	{
-		id: '2',
-		title: 'Shopping',
-		icon: 'huodong',
-		children: [
-			{
-				id: '2-1',
-				title: 'List',
-				path: '/shopping/list',
-			},
-		],
-	},
-	{
-		id: '3',
-		title: 'ElementDemo',
-		icon: 'yingyong',
-		children: [
-			{
-				id: '3-1',
-				title: 'ElDemo1',
-				path: '/eldemo/demo1',
-			},
-			{
-				id: '3-2',
-				title: 'ElDemo2',
-				path: '/eldemo/demo2',
-			},
-		],
-	},
+  {
+    id: '1',
+    title: 'Demos',
+    icon: 'faxian',
+    children: [
+      {
+        id: '1-1',
+        title: 'Page1',
+        path: '/page1',
+      },
+      {
+        id: '1-2',
+        title: 'Page2',
+        path: '/page2',
+      },
+      {
+        id: '1-3',
+        title: 'Page3',
+        path: '/page3',
+      },
+      {
+        id: '1-4',
+        title: '虚拟列表',
+        path: '/examples/virtualList',
+      },
+      {
+        id: '1-5',
+        title: 'PiniaDemo',
+        path: '/examples/pinia',
+      },
+      {
+        id: '1-6',
+        title: 'ProvideInjectDemo',
+        path: '/examples/provide',
+      },
+    ],
+  },
+  {
+    id: '2',
+    title: 'Shopping',
+    icon: 'huodong',
+    children: [
+      {
+        id: '2-1',
+        title: 'List',
+        path: '/shopping/list',
+      },
+    ],
+  },
+  {
+    id: '3',
+    title: 'ElementDemo',
+    icon: 'yingyong',
+    children: [
+      {
+        id: '3-1',
+        title: 'ElDemo1',
+        path: '/eldemo/demo1',
+      },
+      {
+        id: '3-2',
+        title: 'ElDemo2',
+        path: '/eldemo/demo2',
+      },
+    ],
+  },
 ];
 
 // 测试数据

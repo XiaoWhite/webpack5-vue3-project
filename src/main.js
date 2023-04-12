@@ -11,7 +11,7 @@ import './style/element/index.scss';
 import './style/index.scss';
 import zhCn from 'element-plus/es/locale/lang/zh-cn';
 // 引入 icons
-import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 
 // 引入框架组件
 import frameworkComponents from '../framework-components/index';
@@ -28,7 +28,7 @@ app.use(pinia);
 app.use(ElementPlus, { locale: zhCn }); // 注册组件
 // 注册 icons
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
-  app.component(key, component)
+  app.component(key, component);
 }
 app.use(frameworkComponents); // 注册框架组件
 app.mount('#app');
