@@ -14,8 +14,6 @@ function sendRequest() {
   //     console.log(e);
   //   });
 
-  console.log('test git revert');
-
   const url = 'http://localhost:3000/test2';
   axios
     .post(url, {
