@@ -6,6 +6,8 @@
       <li v-for="(value, key) in info" :key="key">{{ `${key}: ${value}` }}</li>
     </ul>
 
+    <div>{{ info.name_1 }}</div>
+
     <button @click="changeColor">changeColor</button>
     <ul>
       <li v-for="(value, key) in flower" :key="key">{{ `${key}: ${value}` }}</li>
@@ -21,7 +23,7 @@ let count = 0;
 
 function addField() {
   count++;
-  info.value[`name_${count}`] = 'Vue';
+  info.value[`name_${count}`] = `Vue_${count}`;
 }
 
 const flower = ref({

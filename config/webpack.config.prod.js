@@ -9,6 +9,9 @@ const CompressionPlugin = require('compression-webpack-plugin'); // 压缩打包
 const baseWebpackConfig = require('./webpack.config.base.js');
 const prodWebpackConfig = merge(baseWebpackConfig, {
   mode: 'production',
+  output: {
+    publicPath: './'
+  },
   module: {
     rules: [
       // 处理 css 文件
@@ -31,7 +34,7 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
       filename: `css/[name]_[contenthash:8].css`, // 指定 css 文件的名称
     }),
     // 打包分析插件
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
     // 压缩文件
     new CompressionPlugin({
       test: /.(js|css)(\?.*)?$/, // 只压缩 js 和 css 文件

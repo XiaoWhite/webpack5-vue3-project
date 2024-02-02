@@ -4,14 +4,26 @@ import Util from '../utils/Util.js';
 import { ref } from 'vue';
 import { useEventBus } from '../../framework-components/utils/event-bus.js';
 function sendRequest() {
-  const url = 'http://localhost:3000/test';
+  // const url = 'http://localhost:3000/test1?t=' + Date.now();
+  // axios
+  //   .get(url)
+  //   .then((res) => {
+  //     console.log(res);
+  //   })
+  //   .catch((e) => {
+  //     console.log(e);
+  //   });
+
+  const url = 'http://localhost:3000/test2';
   axios
-    .get(url)
+    .post(url, {
+      t: Date.now(),
+    })
     .then((res) => {
       console.log(res);
     })
     .catch((e) => {
-      console.log(e);
+      console.error(e);
     });
 }
 
@@ -35,6 +47,26 @@ function clickPostMsg() {
     content: `msg - ${new Date().toString()}`,
   });
 }
+
+/* --------------------------- Upload --------------------------- */
+const imgUploader = ref();
+function uploadFileChange() {
+  console.log('uploadFileChange --- ', imgUploader.value.files);
+
+  // 上传
+  let formData = new FormData();
+  formData.append('img', imgUploader.value.files[0]);
+
+  const url = 'http://localhost:3000/uploadImg';
+  axios
+    .post(url, formData)
+    .then((res) => {
+      console.log('upload ---- ', res);
+    })
+    .catch((e) => {
+      console.error(e);
+    });
+}
 </script>
 
 <template>
@@ -44,6 +76,10 @@ function clickPostMsg() {
     <el-button type="primary" @click="sendRequest">Click</el-button>
     <el-button plain @click="clickFormat">FormatDate</el-button>
     <el-button plain @click="clickPostMsg">PostMessage</el-button>
+
+    <div>
+      <input ref="imgUploader" type="file" name="img" accept="image/*" @change="uploadFileChange" />
+    </div>
   </div>
 </template>
 

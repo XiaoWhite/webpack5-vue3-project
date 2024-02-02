@@ -14,6 +14,15 @@
         </el-popover>
       </div>
     </div>
+
+    <el-select v-model="value" placeholder="Select" multiple>
+      <el-option v-for="item in cities" :key="item.value" :label="item.label" :value="item.value">
+        <span style="float: left">{{ item.label }}</span>
+        <span style="float: right; color: var(--el-text-color-secondary); font-size: 13px" @click="handleClickOption">
+          {{ item.value }}
+        </span>
+      </el-option>
+    </el-select>
   </div>
 </template>
 
@@ -43,6 +52,39 @@ function clickMenu() {
     router.push('/eldemo/demo1');
   }, 500);
   // console.log('hello --- 123');
+}
+
+/* ----------------------- -----------------*/
+const value = ref('');
+const cities = [
+  {
+    value: 'Beijing',
+    label: 'Beijing',
+  },
+  {
+    value: 'Shanghai',
+    label: 'Shanghai',
+  },
+  {
+    value: 'Nanjing',
+    label: 'Nanjing',
+  },
+  {
+    value: 'Chengdu',
+    label: 'Chengdu',
+  },
+  {
+    value: 'Shenzhen',
+    label: 'Shenzhen',
+  },
+  {
+    value: 'Guangzhou',
+    label: 'Guangzhou',
+  },
+];
+
+function handleClickOption(event) {
+  event.preventDefault();
 }
 </script>
 
