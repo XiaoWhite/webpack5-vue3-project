@@ -51,7 +51,7 @@ export default {
 import SideBar from './SideBar.vue';
 import Navbar from './Navbar.vue';
 import TagGroup from '../../tag-group/TagGroup.vue';
-import { computed, ref } from 'vue-demi';
+import { computed, ref } from 'vue';
 // import { useRoute } from 'vue-router';
 
 const props = defineProps({

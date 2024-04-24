@@ -3,7 +3,7 @@
 // import { useStore } from 'vuex';
 // const store = useStore();
 
-import { onMounted, onUnmounted } from 'vue-demi';
+import { onMounted, onUnmounted } from 'vue';
 
 // const userInfo = computed(() => {
 // 	return store.state.userInfo;

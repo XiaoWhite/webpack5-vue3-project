@@ -20,7 +20,7 @@
 import { storeToRefs } from 'pinia';
 import useTagStore from '../../store/tag-group.js';
 import { useRouter } from 'vue-router';
-import { isRef, unref } from 'vue-demi';
+import { isRef, unref } from 'vue';
 
 const tagStore = useTagStore();
 const { visitedList, selectedTag } = storeToRefs(tagStore);

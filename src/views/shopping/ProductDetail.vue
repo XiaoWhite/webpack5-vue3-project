@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import { onMounted, onActivated, ref } from 'vue-demi';
+import { onMounted, onActivated, ref } from 'vue';
 import { useRoute } from 'vue-router';
 
 const name = ref('');

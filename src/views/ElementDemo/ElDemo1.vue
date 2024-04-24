@@ -46,7 +46,7 @@
 </template>
 
 <script setup>
-import { reactive, ref, onDeactivated } from 'vue-demi';
+import { reactive, ref, onDeactivated } from 'vue';
 import MySwitch from './components/MySwitch.vue';
 const status = ref(false);
 // let status = false;
