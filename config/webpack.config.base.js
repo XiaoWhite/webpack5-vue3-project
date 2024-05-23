@@ -5,6 +5,7 @@ const webpack = require('webpack');
 const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // 用于生成 html 文件
 const ESLintPlugin = require('eslint-webpack-plugin'); // ESLint 插件
+const DashboardPlugin = require('webpack-dashboard/plugin'); // 控制台输出内容优化插件
 
 const config = {
   entry: {
@@ -94,6 +95,8 @@ const config = {
       extensions: ['js', 'jsx', 'vue'],
       exclude: ['node_modules', 'dist'],
     }),
+    // 优化控制台输出内容
+    new DashboardPlugin(),
   ],
   optimization: {
     // chunkIds: 'named',
@@ -124,6 +127,24 @@ const config = {
         // defaultVendors: false, // 禁用默认缓存组
       },
     },
+  },
+  // stats 可以用来控制 终端里面在编译时输出的内容
+  stats: {
+    assets: false,
+    builtAt: false,
+    children: false,
+    chunks: false,
+    chunkModules: false,
+    colors: true, // 使输出更具可读性
+    errors: true,
+    errorDetails: true,
+    hash: false,
+    modules: false,
+    performance: true,
+    reasons: false,
+    timings: true,
+    version: false,
+    warnings: true,
   },
 };
 

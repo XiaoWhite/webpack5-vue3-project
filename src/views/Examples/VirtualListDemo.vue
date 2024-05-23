@@ -5,7 +5,7 @@
 
     <el-button type="primary" @click="loadData">Load Data</el-button>
 
-    <div class="list-container" @scroll="handleScroll" ref="listContainer">
+    <div v-if="false" class="list-container" @scroll="handleScroll" ref="listContainer">
       <!-- scroll bar（用来撑起容器，显示滚动条） -->
       <div class="scroll-bar" :style="{ height: `${allDeviceCounts * itemHeight}px` }"></div>
       <!-- 列表 -->
@@ -17,6 +17,15 @@
         </div>
       </div>
     </div>
+
+    <el-button type="primary" plain @click="printScrollTop">打印 scrollTop</el-button>
+    <div class="list-container" ref="testList">
+      <div class="list-wrapper">
+        <div class="list-item" v-for="index in 100" :key="index" @click="clickListItem(index)">
+          <span>{{ index }}</span>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -24,7 +33,7 @@
 // 引入 demo 数据
 import { deviceList } from './demo-data/device-list-data.js';
 
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref, onDeactivated, onActivated } from 'vue';
 
 const itemHeight = ref(40); // 列表中每个元素的高度
 const list = ref([]); // 列表的全部数据
@@ -43,6 +52,7 @@ const listContent = ref(null); // list-content 的 ref
 
 onMounted(() => {
   console.log('listContent ---- ', listContent);
+  addReseizeObserver();
 });
 
 // 加载数据
@@ -86,6 +96,42 @@ function clickListItem(index) {
   let finalIndex = start + index;
   console.log('clickListItem --- index = ', finalIndex);
 }
+
+/* --------------------------- 添加监听器 --------------------------- */
+let resizeObserverInstance;
+const testList = ref(null);
+function addReseizeObserver() {
+  // 创建一个 ResizeObserver 实例
+  resizeObserverInstance = new ResizeObserver((entries) => {
+    for (let entry of entries) {
+      // entry.target 是发生尺寸变化的元素
+      // const target = entry.target;
+      // entry.contentRect 包含元素的新尺寸信息
+      const { width, height } = entry.contentRect;
+      console.log('元素尺寸发生变化:', width, height);
+
+      // 在这里可以执行相应的操作，比如更新布局或样式
+    }
+  });
+
+  // 要观察尺寸变化的元素
+  const elementToObserve = testList.value;
+
+  // 开始观察元素尺寸变化
+  resizeObserverInstance.observe(elementToObserve);
+}
+
+function printScrollTop() {
+  console.log('printScrollTop - testList.value.scrollTop ---- ', testList.value.scrollTop);
+}
+
+onActivated(() => {
+  console.log('onActivated - testList.value.scrollTop ---- ', testList.value.scrollTop);
+});
+onDeactivated(() => {
+  // 记录当前滚动的位置
+  console.log('onDeactivated - testList.value.scrollTop ---- ', testList.value.scrollTop);
+});
 </script>
 
 <style scoped lang="scss">
